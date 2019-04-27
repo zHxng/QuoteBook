@@ -1,15 +1,10 @@
 const mongoose = require('mongoose');
 
 const Quote = new mongoose.Schema({
-	id: {
-		type: int,
-		required: true,
-		index: true,
-		unique: true
-	},
 	author: {
 		type: string,
 		default: 'Unknown',
+		index: true,
 		trim: true
 	},
 	body: {
@@ -21,17 +16,23 @@ const Quote = new mongoose.Schema({
 		type: date
 	},
 	posted_by: {
-		type: string
+		type: string,
+		required: true
 	},
 	posted_date: {
-		type: date
+		type: date,
+		required: true
+	},
+	edited_date: {
+		type: date,
+		default: null
 	},
 	collections: {
 		type: [string]
 	},
 	categories: {
 		type: [string]
-	},
+	}
 });
 
 module.exports = mongoose.model('Quote', Quote);

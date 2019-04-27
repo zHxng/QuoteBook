@@ -1,32 +1,30 @@
 const mongoose = require('mongoose');
 
 const Collection = new mongoose.Schema({
-	id: {
-		type: int,
-		required: true,
-		index: true,
-		unique: true
-	},
 	name: {
 		type: string,
+		required: true,
 		trim: true
 	},
 	description: {
 		type: string,
+		default: '',
 		trim: true
 	},
 	created_by: {
-		type: string
+		type: string,
+		required: true
 	},
 	created_date: {
-		type: date
+		type: date,
+		require: true
 	},
 	quotes: {
 		type: [int]
 	},
 	categories: {
 		type: [string]
-	},
+	}
 });
 
 module.exports = mongoose.model('Collection', Collection);

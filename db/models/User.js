@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 
 const User = new mongoose.Schema({
-	id: {
+	_id: {
 		type: string,
 		required: true,
+		trim: true,
 		index: true,
 		unique: true
 	},
@@ -27,11 +28,12 @@ const User = new mongoose.Schema({
 	},
 	user_type: {
 		type: string,
+		default: 'user',
 		required: true
-	}
+	},
 	quotes: {
 		type: [int]
-	},
+	}
 });
 
 module.exports = mongoose.model('User', User);
