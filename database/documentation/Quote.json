@@ -1,0 +1,95 @@
+{
+	"meta": {
+		"title": "Docmentation for /quote api endpoints"
+	},
+	"endpoints": {
+		"/": {
+			"GET": {
+				"description": "Returns documentation for /quote api endpoints",
+				"usage": "GET /",
+				"response": {
+					"json": [
+						"meta",
+						"endpoints"
+					],
+					"codes": [
+						"200 - OK"
+					]
+				}
+			},
+			"POST": {
+				"description": "Creates a new quote entry",
+				"usage": "POST / {author=string, body=string, date=date, posted_by=string, collections=[string], categories=[string]}",
+				"response": {
+					"json": "{_id=num,author=string,body=string,date=date,poseted_by=string,posted_date=date,edited_date=date,collections=[string],categories=[string]}",
+					"codes": [
+						"201 - CREATED",
+						"400 - BAD REQUEST"
+					]
+				}
+			}
+		},
+		"/<id>": {
+			"DELETE": {
+				"description": "Deletes quote entry with associated <id>",
+				"usage": "DELETE /<id>",
+				"response": {
+					"codes": [
+						"204 - OK NO CONTENT",
+						"400 - BAD REQUEST"
+					]
+				}
+			},
+			"GET": {
+				"description": "Returns quote entry with associated <id>",
+				"usage": "GET /<id>",
+				"response": {
+					"json": "{_id=num,author=string,body=string,date=date,poseted_by=string,posted_date=date,edited_date=date,collections=[string],categories=[string]}",
+					"codes": [
+						"200 - OK",
+						"400 - BAD REQUEST"
+					]
+				}
+			}
+		},
+		"/<id>/<field>": {
+			"DELETE": {
+				"description": "Deletes <field> in quote associated with <id>",
+				"usage": "DELETE /<id>/<field> <field>=collections,categores {[string]}",
+				"response": {
+					"codes": [
+						"204 - OK NO CONTENT",
+						"400 - BAD REQUEST",
+						"404 - NOT FOUND"
+					]
+				}
+			},
+			"GET": {
+				"description": "Returns <field> in quote associated with <id>",
+				"usage": "GET /<id>/<field> <field>=collections,categories",
+				"response": {
+					"json": [
+						"{<field>=[string]}"
+					],
+					"codes": [
+						"200 - OK",
+						"400 - BAD REQUEST",
+						"404 - NOT FOUND"
+					]
+				}
+			},
+			"PUT": {
+				"description": "Modifies <field> in quote associated with <id>",
+				"usage": "PUT /<id>/<field> <field>=author,body,collections,categories {string} or {[string]}",
+				"response": {
+					"json": "{<field>=[string]} or {<field>=string}",
+					"codes": [
+						"200 - OK",
+						"400 - BAD REQUEST",
+						"404 - NOT FOUND"
+					]
+				}
+			}
+		}
+	}
+}
